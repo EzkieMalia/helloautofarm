@@ -11,8 +11,8 @@ local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPar
 local Random = Random.new()
 
 writefile("AutorejoinerTXT.txt", "false")
-local string = "https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/RealAutofarm.lua"
-writefile("auto_rejoiner.txt", string)
+writefile("auto_rejoiner.txt", "https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/RealAutofarm.lua")
+task.wait(.05)
 
 if game.PlaceId ~= 15124180230 then
     Player:Kick("Auto Farm Protection | This isn't supported on regular servers.")
@@ -48,8 +48,10 @@ task.spawn(function()
         if tonumber(Result) >= 1750000 then
             Player:Kick("Auto Farm Protection | Reached Max Money.")
         return end
-        Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
-        MoneyDifference = tonumber(Result) - Settings["Starting Cash"]
+        if Settings["IsHealing"] ~= true then
+            Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
+            MoneyDifference = tonumber(Result) - Settings["Starting Cash"]
+        end
     end
 end)
 
@@ -120,7 +122,7 @@ task.spawn(function()
     Humanoid.Died:Connect(function()
         if Settings["Auto Rejoin"] == true then
             writefile("AutorejoinerTXT.txt", "true")
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/Autofarm.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/Autoexecute.lua"))()
         end
     end)
 end)
@@ -1087,7 +1089,7 @@ else
     Settings["Status"] = "[ Startup ] Status: Apartment found."
 end
 
-if readfile(AutorejointerTXT.txt) == "true" then
+if readfile("AutorejoinerTXT.txt") == "true" then
     local Player = game.Players.LocalPlayer
     local PlayerGui = Player.PlayerGui
     repeat task.wait() until PlayerGui:FindFirstChild("IntroUI") or PlayerGui:FindFirstChild("Main")
