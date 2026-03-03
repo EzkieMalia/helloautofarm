@@ -204,7 +204,7 @@ end
 local function FindAvailableHomeless()
     Settings["Old HRP Position"] = CFrame.new(HumanoidRootPart.Position)
     HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
-    task.wait(.15)
+    task.wait(.25)
     HumanoidRootPart.CFrame = CFrame.new(899, 4, -284)
     task.wait(.1)
     HumanoidRootPart.CFrame = CFrame.new(518, 4, -295)
@@ -890,6 +890,7 @@ local function MainAutofarm()
             if #AvailableHomeless == 0 then
             else
                 repeat
+                    AvailableHomeless = FindAvailableHomeless()
                     if Settings["Autofarm Enabled"] ~= true then return end
                     Settings["Status"] = "[ Potato Chips ] Status: Giving hot chips to homeless."
                     local Homeless = AvailableHomeless[Random:NextInteger(1, #AvailableHomeless)]
@@ -935,7 +936,6 @@ local function MainAutofarm()
                     task.wait(.1)
                     Humanoid:UnequipTools()
                     task.wait(.05)
-                    AvailableHomeless = FindAvailableHomeless()
                     Settings["Potato Counter"] += 1
                 until #AvailableHomeless == 0 or not Player:WaitForChild("Backpack"):FindFirstChild("Hot Chips") or Settings["Potato Counter"] > 10
                 Settings["Potato Counter"] = 0
@@ -1077,7 +1077,7 @@ local Toggle = Tab:CreateToggle({
 
 local Toggle2 = Tab:CreateToggle({
    Name = "Auto-crouch",
-   CurrentValue = true,
+   CurrentValue = false,
    Flag = "Toggle2",
    Callback = function(Value)
     Settings['Autocrouch Enabled'] = Value
@@ -1119,7 +1119,7 @@ task.spawn(function()
 end)
 
 PurchaseSkiMask()
-Settings['Autocrouch Enabled'] = true
+Settings['Autocrouch Enabled'] = false
 if Settings["IsHealing"] == true then
     repeat task.wait() until Settings["IsHealing"] == false
 end
