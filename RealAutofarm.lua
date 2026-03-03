@@ -606,7 +606,11 @@ local function MainAutofarm()
         fireproximityprompt(PotatoCutterPrompt)
         Humanoid:UnequipTools()
         task.wait(.05)
-    until not Player:WaitForChild("Backpack"):FindFirstChild("Potato") or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You do not have an active task."
+    until not Player:WaitForChild("Backpack"):FindFirstChild("Potato") or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You do not have an active task." or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You are at the wrong step."
+    if PlayerGui:WaitForChild("Main").BasicNotification.Text == "You are at the wrong step." and Player:WaitForChild("Backpack"):FindFirstChild("Potato") then
+        Humanoid.Health = 0
+        return
+    end
     if PlayerGui:WaitForChild("Main").BasicNotification.Text == "You do not have an active task." then
         if Settings["IsHealing"] == true then
             repeat task.wait() until Settings["IsHealing"] == false
