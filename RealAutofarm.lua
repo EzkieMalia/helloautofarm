@@ -902,6 +902,7 @@ local function MainAutofarm()
                         if Settings["Autofarm Enabled"] ~= true then return end
                         Settings["Status"] = "[ Potato Chips ] Status: Giving hot chips to homeless."
                         local Homeless = AvailableHomeless[Random:NextInteger(1, #AvailableHomeless)]
+                        repeat task.wait() until Homeless:FindFirstChild("UpperTorso")
                         local UpperTorso = Homeless:FindFirstChild("UpperTorso")
                         if Settings["IsHealing"] == true then
                             repeat task.wait() until Settings["IsHealing"] == false
