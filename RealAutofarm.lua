@@ -212,7 +212,7 @@ local function FindAvailableHomeless()
     task.wait(.15)
     HumanoidRootPart.CFrame = CFrame.new(1102, 4, 529)
     task.wait(.15)
-    HumanoidRootPart.CFrame = Settings["Old HRP Position"]
+    HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
     task.wait(.15)
     local Homeless = ReplicatedStorage:WaitForChild("Workspace").Homeless
     local AvailableHomeless = {}
