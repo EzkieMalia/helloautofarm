@@ -58,10 +58,8 @@ task.spawn(function()
         if Settings["IsHealing"] ~= true then
             repeat task.wait() until PlayerGui:FindFirstChild("Main") :: ScreenGui
             repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money") :: Frame
-            repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabel
-            if HourlyRate2 ~= nil or HourlyRate2 ~= "100" then
-                if tonumber(HourlyRate2) > 1000000 then Result = Settings["Starting Cash"]; end
-            end
+            repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabe
+            if tonumber(HourlyRate2) > 1000000 then Result = Settings["Starting Cash"]; end
             if tonumber(Result) > 2500 then
                 Settings["Enough Cash"] = true
             else
