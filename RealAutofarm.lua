@@ -47,6 +47,7 @@ local Settings = {
 
 task.spawn(function()
     repeat task.wait() until PlayerGui:FindFirstChild("Main") :: ScreenGui
+    repeat task.wait() until PlayerGui:FindFirstChild("Main").Enabled == true
     repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money") :: Frame
     repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabel
     local Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
