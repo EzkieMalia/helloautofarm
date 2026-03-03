@@ -733,6 +733,8 @@ local function MainAutofarm()
         ApplyForCard()
         Settings["Cards Counter"] += 1
         repeat task.wait() until PlayerGui:WaitForChild("Main").BasicNotification.TextTransparency == 0
+    elseif PlayerGui:WaitForChild("Main").BasicNotification.Text ~= "Your application was successful. Please allow 30 seconds for the bank to prepare your card." then
+        repeat task.wait() until PlayerGui:WaitForChild("Main").BasicNotification.TextTransparency == 0
     end
 
     local function DoChipMarsh()
@@ -1095,6 +1097,7 @@ if readfile("AutorejoinerTXT.txt") == "true" then
     repeat task.wait() until PlayerGui:FindFirstChild("IntroUI") or PlayerGui:FindFirstChild("Main")
     if PlayerGui:FindFirstChild("Main").Enabled == true then
         MainAutofarm()
+        writefile("AutorejoinerTXT.txt", "false")
         return
     end
     repeat task.wait() until PlayerGui:FindFirstChild("IntroUI")
@@ -1110,7 +1113,7 @@ if readfile("AutorejoinerTXT.txt") == "true" then
         task.wait(.25)
     until not PlayerGui:FindFirstChild("IntroUI")
     MainAutofarm()
+    writefile("AutorejoinerTXT.txt", "false")
     return
 end
-writefile("AutorejoinerTXT.txt", "false")
 end)
