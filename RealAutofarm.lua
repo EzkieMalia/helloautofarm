@@ -28,7 +28,8 @@ local Now = os.clock()
 local Runtime
 local Information
 local SellInfo
-local HourlyRate = 0
+local HourlyRate
+local HourlyRate2 = "100"
 
 local Settings = {
     ["Status"] = "[ Startup ] Status: none";
@@ -57,7 +58,7 @@ task.spawn(function()
             repeat task.wait() until PlayerGui:FindFirstChild("Main") :: ScreenGui
             repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money") :: Frame
             repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabel
-            if tonumber(HourlyRate) > 1000000 then Result = Settings["Starting Cash"]; end
+            if tonumber(HourlyRate2) > 1000000 then Result = Settings["Starting Cash"]; end
             Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
             MoneyDifference = tonumber(Result) - Settings["Starting Cash"]
         end
@@ -1089,6 +1090,7 @@ task.spawn(function()
         Information = "Runtime: " .. tostring(math.floor(Runtime)) .. " seconds  |  Cycle: " .. tostring(Cycles) .. "  |  Money Made: " .. tostring(GetCommaValue(MoneyDifference)) .. " Cash"
         SellInfo = "Potato Chips Fed: " .. PotatoChipsSold .. " | Marshmallows Sold: " .. MarshmallowSold .. " | Credit Cards Used: " .. CardsDone
         HourlyRate = "Hourly Rate: " .. tostring(GetCommaValue(math.floor(3600/math.floor(Runtime) * MoneyDifference))) .. " Cash"
+        HourlyRate2 = tostring(GetCommaValue(math.floor(3600/math.floor(Runtime) * MoneyDifference)))
         Paragraph:Set({Title = "Status Information", Content = Settings["Status"]})
         Paragraph2:Set({Title = "Runtime Information", Content = Information})
         Paragraph3:Set({Title = "Sold Information", Content = SellInfo})
