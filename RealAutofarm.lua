@@ -10,7 +10,6 @@ local Humanoid = Character and Character:FindFirstChild("Humanoid")
 local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPart")
 local Random = Random.new()
 
-writefile("AutorejoinerTXT.txt", "false")
 writefile("auto_rejoiner.txt", "https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/RealAutofarm.lua")
 task.wait(.05)
 
@@ -1112,3 +1111,4 @@ if readfile("AutorejoinerTXT.txt") == "true" then
     MainAutofarm()
     return
 end
+writefile("AutorejoinerTXT.txt", "false")
