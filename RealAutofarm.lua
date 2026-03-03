@@ -58,7 +58,7 @@ task.spawn(function()
             repeat task.wait() until PlayerGui:FindFirstChild("Main") :: ScreenGui
             repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money") :: Frame
             repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabel
-            if HourlyRate2 ~= nil and type(HourlyRate2) == "string" or type(HourlyRate2) == "number" then
+            if HourlyRate2 ~= nil or HourlyRate2 == "0" or HourlyRate2 == "100" then
                 if tonumber(HourlyRate2) > 1000000 then Result = Settings["Starting Cash"]; end
             end
             Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
@@ -99,7 +99,7 @@ task.spawn(function()
             if Humanoid.Health <= 80 then
                 Settings["IsHealing"] = true
                 Settings["Status"] = "[ Startup ] Status: Healing."
-                HumanoidRootPart.CFrame = CFrame.new(-809, 4, 593)
+                HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
             else
                 Settings["IsHealing"] = false
                 if Settings["Status"] == "[ Startup ] Status: Healing." then
