@@ -606,6 +606,8 @@ local function MainAutofarm()
         Humanoid:UnequipTools()
         task.wait(.05)
     until not Player:WaitForChild("Backpack"):FindFirstChild("Potato") or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You do not have an active task." or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You are at the wrong step."
+    Humanoid:UnequipTools()
+    task.wait(.05)
     if PlayerGui:WaitForChild("Main").BasicNotification.Text == "You are at the wrong step." and Player:WaitForChild("Backpack"):FindFirstChild("Potato") then
         Humanoid.Health = 0
         return
@@ -993,19 +995,19 @@ local function MainAutofarm()
                         task.wait(.75)
                         repeat
                             if Settings["Autofarm Enabled"] ~= true then return end
-                            fireproximityprompt(ATMPrompt)
                             if Settings["IsHealing"] == true then
                                 repeat task.wait() until Settings["IsHealing"] == false
                             end
                             HumanoidRootPart.CFrame = CFrame.new(ATM.Position)
                             Settings["Status"] = "[ Cards ] Status: Attempting to use blank card."
+                            fireproximityprompt(ATMPrompt)
                             task.wait(.1)
                         until PlayerGui:FindFirstChild("ATM")
                         task.wait(.1)
                         Humanoid:EquipTool(Player:WaitForChild("Backpack"):FindFirstChild("Card"))
                         task.wait(.25)
                         if Settings["Autofarm Enabled"] ~= true then return end
-                        replicatesignal(game:GetService("Players").LocalPlayer.PlayerGui.ATM.Frame.Swipe.MouseButton1Click, Player)
+                        replicatesignal(PlayerGui:WaitForChild("ATM").Frame.Swipe.MouseButton1Click, Player)
                     else
                         Settings["Status"] = "[ Cards ] Status: No available ATM, skipping cards."
                     end
