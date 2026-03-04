@@ -586,7 +586,7 @@ local function MainAutofarm()
         if Settings["IsHealing"] == true then
             repeat task.wait() until Settings["IsHealing"] == false
         end
-        HumanoidRootPart.CFrame = CFrame.new(215, 4, -332)
+        HumanoidRootPart.CFrame = CFrame.new(215, 6, -332)
         Settings["Status"] = "[ Cards ] Status: Purchasing fake ID."
         task.wait(.5)
         repeat task.wait() until workspace:WaitForChild("Folders").NPCs:FindFirstChild("FakeIDSeller")
@@ -594,6 +594,7 @@ local function MainAutofarm()
         local BuyIDPrompt = FakeIDSeller.UpperTorso.Attachment.ProximityPrompt
         repeat
             if Settings["Autofarm Enabled"] ~= true then return end
+            HumanoidRootPart.CFrame = CFrame.new(215, 6, -332)
             fireproximityprompt(BuyIDPrompt)
             task.wait(.05)
         until Player:WaitForChild("Backpack"):FindFirstChild("Fake ID")
