@@ -376,6 +376,9 @@ local function MainAutofarm()
     if Settings["IsHealing"] == true then
         repeat task.wait() until Settings["IsHealing"] == false
     end
+    if not Character:FindFirstChild("SkiMask") :: Accessory then
+        PurchaseSkiMask()
+    end
     local function BuyMarshIngredients()
         Potato, Flour, Water, Gelatin, SugarBlockBag = ScavengeInventory()
         if (Water < 1 or Gelatin < 1 or SugarBlockBag < 1) then
