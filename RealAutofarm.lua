@@ -291,7 +291,11 @@ local function StartMarshmallowFarm()
                 fireproximityprompt(Lock.Part.ProximityPrompt)
                 task.wait(.25)
                 fireproximityprompt(KnobPrompt)
-            until Lock.Part.Rotation.X == 90
+            until Lock.Part.Rotation.X == 90 or PlayerGui:WaitForChild("Main").BasicNotification.Text == "You do not have permission to interact with this."
+            if PlayerGui:WaitForChild("Main").BasicNotification.TextTransparency == 0 then
+                task.spawn(StartMarshmallowFarm)
+                return
+            end
         end
         task.wait(.25)
         HumanoidRootPart.CFrame = Settings["Old HRP Position"]
