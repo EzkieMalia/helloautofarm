@@ -5,7 +5,7 @@ queue_on_teleport([[
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/Autofarm/refs/heads/main/Autoexecute.lua"))()
     else
         print("Successfully rejoined.")
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/helloautofarm/refs/heads/main/RealAutofarm.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/Autofarm/refs/heads/main/RealAutofarm.lua"))()
     end
 ]])
 end)
