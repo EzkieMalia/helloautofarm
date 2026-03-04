@@ -1184,6 +1184,13 @@ if readfile("AutorejoinerTXT.txt") == "true" then
         MainAutofarm()
         return
     end
+    repeat
+        mousemoveabs(425, 625)
+        task.wait(.1)
+        mousemoveabs(430, 625)
+        task.wait(.1)
+        mouse1click()
+    until not PlayerGui:FindFirstChild("IntroUI")
     MainAutofarm()
     return
 end
