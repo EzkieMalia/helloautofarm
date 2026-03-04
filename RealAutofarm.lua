@@ -1,5 +1,5 @@
 task.spawn(function()
-repeat repeat task.wait() until game:IsLoaded()
+repeat task.wait() until game:IsLoaded()
 local VIP = cloneref(game:GetService("VirtualInputManager"))
 local RunService = game:GetService("RunService")
 local LogService = cloneref(game:GetService("LogService"))
