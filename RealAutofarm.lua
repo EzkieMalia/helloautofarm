@@ -1036,7 +1036,7 @@ local function MainAutofarm()
             DoCards()
             Settings["Cards Counter"] = 0
         else
-            task.wait(30)
+            task.wait(25)
             DoCards()
             DoChipMarsh()
         end
