@@ -45,7 +45,6 @@ local Settings = {
     ['Autocrouch Enabled'] = false;
     ["Auto Rejoin"] = false;
     ["Enough Cash"] = false;
-    ["Rejoined"] = true;
 }
 
 task.spawn(function()
@@ -66,7 +65,7 @@ task.spawn(function()
             if tonumber(HourlyRate2) > 1000000 then Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", ""); Settings["Starting Cash"] = tonumber(Result); Result = Settings["Starting Cash"]; end
             if tonumber(Result) > 2500 then
                 Settings["Enough Cash"] = true
-            elseif Settings["Rejoined"] == true then
+            elseif readfile("AutorejoinerTXT.txt") == true then
                 Settings["Enough Cash"] = true
             else
                 Settings["Status"] = "[ Startup ] Status: You don't have atleast 2500 cash, waiting until the system detects you have atleast 2500 cash."
@@ -96,7 +95,7 @@ end)
 
 task.spawn(function()
     while task.wait() do
-        if Settings["Autofarm Enabled"] ==  true then
+        if Settings["Autofarm Enabled"] == true then
             Settings["Ping"] = Player:GetNetworkPing()
             VIP:SendKeyEvent(true, Enum.KeyCode.Space, false, nil)
             task.wait()
@@ -107,22 +106,23 @@ task.spawn(function()
                 task.wait()
                 VIP:SendKeyEvent(false, Enum.KeyCode.C, false, nil)
             end
-            if Humanoid.Health <= 80 then
-                Settings["IsHealing"] = true
-                Settings["Status"] = "[ Startup ] Status: Healing."
-                HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
-            else
-                Settings["IsHealing"] = false
-                if Settings["Status"] == "[ Startup ] Status: Healing." then
-                    Settings["Status"] = "[ Startup ] Status: Waiting for a response from the system."
-                end
-            end
-            if HumanoidRootPart.Position.Y <= -10 then
-                HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
-            end
-            task.wait()
         end
     end
+    RunService.RenderStepped:Connect(function()
+        if Humanoid.Health <= 80 or PlayerGui:WaitForChild("Main"):WaitForChild("CombatFrame").Visible == true then
+            Settings["IsHealing"] = true
+            Settings["Status"] = "[ Startup ] Status: Healing."
+            HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
+        else
+            Settings["IsHealing"] = false
+            if Settings["Status"] == "[ Startup ] Status: Healing." then
+                Settings["Status"] = "[ Startup ] Status: Waiting for a response from the system."
+            end
+        end
+        if HumanoidRootPart.Position.Y <= -10 then
+            HumanoidRootPart.CFrame = CFrame.new(-769, 6, 654)
+        end
+    end)
 end)
 
 task.spawn(function()
