@@ -1,5 +1,4 @@
 task.spawn(function()
-task.spawn(function()
 repeat task.wait() until game:IsLoaded()
 local VIP = cloneref(game:GetService("VirtualInputManager"))
 local RunService = game:GetService("RunService")
@@ -1190,10 +1189,16 @@ if readfile("AutorejoinerTXT.txt") == "true" then
     end
     repeat
         mousemoveabs(425, 625)
+        VIP:SendMouseButtonEvent(425, 625, 1, true, nil, 1)
+        VIP:SendMouseButtonEvent(425, 625, 1, false, nil, 1)
         task.wait(.1)
         mousemoveabs(430, 625)
+        VIP:SendMouseButtonEvent(430, 625, 1, true, nil, 1)
+        VIP:SendMouseButtonEvent(430, 625, 1, false, nil, 1)
         task.wait(.1)
         mouse1click()
+        VIP:SendMouseButtonEvent(430, 625, 1, true, nil, 1)
+        VIP:SendMouseButtonEvent(430, 625, 1, false, nil, 1)
     until not PlayerGui:FindFirstChild("IntroUI")
     MainAutofarm()
     return
@@ -1208,6 +1213,5 @@ LogService.MessageOut:Connect(function(Message, MessageType)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/EzkieMalia/Autofarm/refs/heads/main/Autoexecute.lua"))()
         end
     end
-end)
 end)
 end)
