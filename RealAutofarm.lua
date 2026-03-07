@@ -717,10 +717,10 @@ local function MainAutofarm()
     HumanoidRootPart.CFrame = CFrame.new(PlasticBag.Position)
     Settings["Status"] = "[ Potato Chips ] Status: Bagging potato."
     task.wait(.5)
-    for Index = 1,10 do
+    repeat
         fireproximityprompt(PlasticBagPrompt)
         task.wait(.05)
-    end
+    until not PlayerGui:WaitForChild("Main").TaskUpdate.TextLabel.Text:match("Grab")
     task.wait(2.75)
 
     if Settings["Autofarm Enabled"] ~= true then return end
