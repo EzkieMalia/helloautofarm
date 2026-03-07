@@ -61,7 +61,7 @@ task.spawn(function()
     repeat task.wait() until PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount") :: TextLabel
     local Result = string.gsub(PlayerGui:FindFirstChild("Main"):FindFirstChild("Money"):FindFirstChild("Amount").Text, "%D+", "")
     Settings["Starting Cash"] = tonumber(Result)
-    if isfile("autogc_1" .. Player.Name .. ".txt") and isfile("autogc2_" .. Player.Name .. ".txt") and isfile("autogc3_" .. Player.Name .. ".txt") then
+    if isfile("autogc_1" .. Player.Name .. ".txt") and isfile("autogc_2" .. Player.Name .. ".txt") and isfile("autogc_3" .. Player.Name .. ".txt") then
         local file1 = readfile("autogc_1" .. game.Players.LocalPlayer.Name .. ".txt")
         if file1 == "true" then
             GoalCashSettings["GoalCash"] = true
@@ -86,8 +86,8 @@ task.spawn(function()
         if GoalCashSettings["SaveGoalCashOnExit"] ~= true then
             delfile("autofarm_" .. Player.Name .. ".txt")
             delfile("autogc_1" .. Player.Name .. ".txt")
-            delfile("autogc2_" .. Player.Name .. ".txt")
-            delfile("autogc3_" .. Player.Name .. ".txt")
+            delfile("autogc_2" .. Player.Name .. ".txt")
+            delfile("autogc_3" .. Player.Name .. ".txt")
         else
             GoalCashSettings["GoalAmount"] = (GoalCashSettings["GoalAmount"] - tonumber(readfile("autofarm_" .. Player.Name .. ".txt")))
         end
@@ -99,8 +99,8 @@ task.spawn(function()
                     delfile("autofarm_" .. Player.Name .. ".txt")
                 end
                 delfile("autogc_1" .. Player.Name .. ".txt")
-                delfile("autogc2_" .. Player.Name .. ".txt")
-                delfile("autogc3_" .. Player.Name .. ".txt")
+                delfile("autogc_2" .. Player.Name .. ".txt")
+                delfile("autogc_3" .. Player.Name .. ".txt")
                 warn("Goal Cash Reached.")
                 Player:Kick("Auto Farm Protection | Reached Goal Cash : " .. tostring(GetCommaValue(GoalCashSettings["GoalAmount"])) .. " | " .. Player.Name)
             end
@@ -143,8 +143,8 @@ task.spawn(function()
                         writefile("autofarm_" .. Player.Name .. ".txt", tostring(MoneyDifference))
                     end
                     writefile("autogc_1" .. Player.Name .. ".txt", tostring(GoalCashSettings["GoalCash"]))
-                    writefile("autogc2_" .. Player.Name .. ".txt", tostring(GoalCashSettings["SaveGoalCashOnExit"]))
-                    writefile("autogc3_" .. Player.Name .. ".txt", tostring(GoalCashSettings["GoalAmount"]))
+                    writefile("autogc_2" .. Player.Name .. ".txt", tostring(GoalCashSettings["SaveGoalCashOnExit"]))
+                    writefile("autogc_3" .. Player.Name .. ".txt", tostring(GoalCashSettings["GoalAmount"]))
                 end
             end
         end
