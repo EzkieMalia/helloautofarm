@@ -84,7 +84,7 @@ task.spawn(function()
             GoalCashSettings["SaveGoalCashOnExit"] = false
         end
         local file3 = readfile("autogc_1" .. game.Players.LocalPlayer.Name .. ".txt")
-        if file3 and GoalCashSettings["GoalCash"] == true then
+        if typeof(file3) == "number" and GoalCashSettings["GoalCash"] == true then
             GoalCashSettings["GoalAmount"] = tonumber(readfile("autogc_3" .. Player.Name .. ".txt"))
         else
             GoalCashSettings["GoalAmount"] = 1750000
